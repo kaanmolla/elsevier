@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Elsevier News Tweets</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+              th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+              rel="stylesheet" media="screen" />
+
+        <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+                th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>Elsevier News Tweets</h1>
+            </div>
+            <div class="row">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th th:text="Tweets">Tweets</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tweet: ${pagedTweets}">
+                        <td th:text="${tweet.text}">Tweet</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <span th:if="${pagedTweets.isEmpty()}">
+                USER TWEETS ARE NOT FOUND
+            </span>
+            <div class="row">
+                <div class="pagination pagination-centered">
+                    <ul class="pagination">
+                        <li th:class="${currentIndex == 1} ? 'disabled' : '' ">
+                            <span th:if='${currentIndex == 1}'>
+                                First
+                            </span>
+                            <a th:if='${currentIndex != 1}' th:href="@{/search/page/1}" title="First Page">
+                                First
+                            </a>
+                        </li>
+                        <li th:class="${currentIndex != 1} ? '' : 'disabled' ">
+                            <span th:if='${currentIndex == 1}'>
+                                Previous
+                            </span>
+                            <a th:if='${currentIndex != 1}' th:href="@{|${baseUrl}${currentIndex-1}|}"
+                            title="Previous Page">
+                                Previous
+                            </a>
+                        </li>
+
+                        <li th:each="item : ${#numbers.sequence(beginIndex, endIndex)}"
+                            th:class="${item == currentIndex ? 'active' : ''}">
+                            <span th:if='${item == currentIndex}' th:text="${item}">
+                                1
+                            </span>
+                            <a th:if='${item != currentIndex}' th:href="@{|${baseUrl}${item}|}">
+                                <span th:text="${item}">
+                                    1
+                                </span>
+                            </a>
+                        </li>
+
+                        <li th:class="${currentIndex != totalPageCount} ? '' : 'disabled' ">
+                            <span th:if='${currentIndex == totalPageCount}'>
+                                Next
+                            </span>
+                            <a th:if='${currentIndex != totalPageCount}' th:href="@{|${baseUrl}${currentIndex+1}|}" title="Next Page">
+                                Next
+                            </a>
+                        </li>
+                        <li th:class="${currentIndex == totalPageCount} ? 'disabled' : '' ">
+                            <span th:if='${currentIndex == totalPageCount}'>
+                                Last
+                            </span>
+                            <a th:if='${currentIndex != totalPageCount}' th:href="@{|${baseUrl}${totalPageCount}|}" title="Last Page">
+                                Last
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

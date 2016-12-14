@@ -9,10 +9,10 @@ import twitter4j.conf.ConfigurationBuilder;
 @Service
 class TwitterConnectionService {
 
-    private static final String TWITTER_CONSUMER_KEY = "O4tsJ0sGpa3iR3d2qqs97uTUA";
-    private static final String TWITTER_CONSUMER_SECRET = "Cu7z1ImJqXWre5SKRSu6oVs0BWXWytms6NhbjsbePPWziTD4VX";
-    private static final String TWITTER_ACCESS_TOKEN = "307322697-riv6TwXIbdBPw71SBnUrvn7AFmATIdeJx8jtvi1s";
-    private static final String TWITTER_ACCESS_TOKEN_SECRET = "AlgHsE2rSqybZ3znpXuvgtyJN4awVE5CnRArFPsolPC1o";
+    private static final String TWITTER_CONSUMER_KEY = "xxx";
+    private static final String TWITTER_CONSUMER_SECRET = "xxx";
+    private static final String TWITTER_ACCESS_TOKEN = "xx-xx";
+    private static final String TWITTER_ACCESS_TOKEN_SECRET = "xxx";
 
     private final Twitter twitterInstance;
 
